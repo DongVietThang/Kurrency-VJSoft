@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
-import GetStarted from './screens/GetStarted';
+import React from 'react';
+import Config from './route/Config';
 
-export default () => <GetStarted/>
+export default () => <Config/>
