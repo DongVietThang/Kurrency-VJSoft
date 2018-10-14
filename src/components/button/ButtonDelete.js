@@ -6,8 +6,8 @@ import '../../data/global'
 
 export class ButtonDelete extends React.Component {
     onPress = () =>  {
-        global.valueInput = '';
-        global.valueResult = 0;
+        global.valueInput = global.valueInput.slice(0, -1);
+        global.valueResult = parseFloat(global.valueInput) * global.factor;
         this.props.onPress();
     }
     

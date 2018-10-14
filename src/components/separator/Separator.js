@@ -8,9 +8,13 @@ export class Separator extends React.Component {
         let temp = global.unitInput;
         global.unitInput = global.unitResult;
         global.unitResult = temp;
+        temp = global.flagInput;
+        global.flagInput = global.flagResult;
+        global.flagResult = temp;
         this.props.changeUnit1();
         this.props.changeUnit2();
     }
+    
     render() {
         return (
             <View style = { styles.container }>
@@ -18,7 +22,6 @@ export class Separator extends React.Component {
                 <TouchableOpacity onPress = { this.onPress }>
                     <Image 
                         source = { require('../../../image/main/icon.png')} 
-                        style = { styles.image }
                         resizeMode = 'contain'
                     />
                 </TouchableOpacity>

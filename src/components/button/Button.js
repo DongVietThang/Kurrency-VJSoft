@@ -8,7 +8,6 @@ export class Button extends React.Component {
     onPress = () => {
         global.valueInput = global.valueInput + this.props.number;
         global.valueResult = parseFloat(global.valueInput) * global.factor;
-        global.valueResult = global.valueResult.toFixed(1);
         this.props.onPress();
     }
     

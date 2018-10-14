@@ -3,16 +3,17 @@ import { View, Text, Image,StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 
 import '../../data/global'
-import { unit } from '../../data/global';
+import { unitArr } from '../../data/global';
+import { flagArr } from '../../data/global';
 
 export class Result extends React.Component {
     render() {
         return (
             <View style = { styles.container }>
                 <View style = { styles.content_1 }>
-                    <Image source = { require('../../../image/main/vietnam.png')} style = { styles.image }/>
+                    <Image source = { flagArr[global.flagResult].flag } style = { styles.image }/>
                     <Dropdown 
-                        data = { unit }
+                        data = { unitArr }
                         value = { global.unitResult }
                         fontSize = { 18 }
                         containerStyle = { styles.dropDown }
@@ -20,15 +21,16 @@ export class Result extends React.Component {
                         baseColor = { '#ffffff' }
                         textColor = { '#ffffff' }
                         selectedItemColor = { '#000000'}
-                        onChangeText = { (value) => {
+                        onChangeText = { (value, index) =>  {
                             global.unitResult = value;
+                            global.flagResult = index;
                             this.props.changeUnit();
                         } }
                     />
                 </View>
                 <View style = { styles.content_2 }>
-                        <Text style = { styles.result }> {this.props.value } </Text>
-                        <Text style = { styles.icon }> đ </Text>            
+                        <Text style = { styles.result }> { isNaN(this.props.value) ? 0 : this.props.value } </Text>
+                        <Text style = { styles.icon }> { flagArr[global.flagResult].icon } </Text>            
                 </View >
             </View>
         );

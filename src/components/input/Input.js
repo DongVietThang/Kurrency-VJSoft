@@ -3,16 +3,23 @@ import { View, Text, Image, StyleSheet, } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
 
 import '../../data/global';
-import { unit } from '../../data/global';
+import { unitArr } from '../../data/global';
+import { flagArr } from '../../data/global';
 
 export class Input extends React.Component {
+    onChange (value, index) {
+        global.unitInput = value;
+        global.flagInput = index;
+        this.props.changeUnit();
+    }
+
     render() {
         return (
             <View style = { styles.container }>
                 <View style = { styles.content_1 }>
-                    <Image source = { require('../../../image/main/united-states.png')} style = { styles.image }/>
+                    <Image source = { flagArr[global.flagInput].flag } style = { styles.image }/>
                     <Dropdown 
-                        data = { unit }
+                        data = { unitArr }
                         value = { global.unitInput }
                         fontSize = { 18 }
                         containerStyle = { styles.dropDown }
@@ -20,15 +27,16 @@ export class Input extends React.Component {
                         baseColor = { '#ffffff' }
                         textColor = { '#ffffff' }
                         selectedItemColor = { '#000000' }
-                        onChangeText = { (value) => {
-                            global.unitInput = value 
+                        onChangeText = { (value, index) => {
+                            global.unitInput = value;
+                            global.flagInput = index;
                             this.props.changeUnit();
-                        }}
+                        } }
                     />
                 </View>
                 <View style = { styles.content_2 }>
                     <Text style = { styles.input }> { this.props.value } </Text>
-                    <Text style = { styles.icon }> $ </Text>
+                    <Text style = { styles.icon }> { flagArr[global.flagInput].icon } </Text>
                 </View >
             </View>
         );
